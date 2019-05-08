@@ -22,6 +22,17 @@ class App extends Component {
 		this.setState({recipes: data.recipes });
 		console.log(data);
 	}
+
+	componentDidMount = () => {
+		const json = localStorage.getItem('recipes');
+		const recipes = JSON.parse(json);
+		this.setState({recipes: recipes});
+	}
+
+	componentDidUpdate = () => {
+	  const recipes = JSON.stringify(this.state.recipes);
+		localStorage.setItem('recipes', recipes);
+	}
 	
 	render() {
 		return (
